@@ -77,3 +77,58 @@ Query the Euclidean Distance between points P1 and P2 and round it to a scale of
 
 ## Solution-
 select round(sqrt(power(max(lat_n)-min(lat_n),2)+power(max(long_w)-min(long_w),2)),4) from station;
+
+
+# Weather observation station 3-
+## [Query-](https://www.hackerrank.com/challenges/weather-observation-station-3/problem)
+Query a list of CITY names from STATION with even ID numbers only. You may print the results in any order, but must exclude duplicates from your answer.
+
+## Solution-
+select distinct city from station where ID%2=0;
+
+
+
+# Weather observation station 4-
+## [Query-](https://www.hackerrank.com/challenges/weather-observation-station-4/problem)
+Let  be the number of CITY entries in STATION, and let  be the number of distinct CITY names in STATION; query the value of  from STATION. In other words, find the difference between the total number of CITY entries in the table and the number of distinct CITY entries in the table.
+
+## Solution-
+select count(city)-count(distinct(city)) from station;
+
+
+# Weather observation station 5-
+## [Query-](https://www.hackerrank.com/challenges/weather-observation-station-5/problem)
+Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+
+## Solution-
+select city, length(city) from station order by length(city),city limit 1;
+
+select city, length(city) from station order by length(city) desc,city  limit 1;
+
+
+
+# Weather observation station 6-
+## [Query-](https://www.hackerrank.com/challenges/weather-observation-station-6/problem)
+Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.
+
+## Solution-
+SELECT DISTINCT 
+CITY 
+FROM STATION 
+WHERE lower(substr(CITY,1,1)) in ('a','e','i','o','u') ;
+
+
+# Weather observation station 7-
+## [Query-](https://www.hackerrank.com/challenges/weather-observation-station-7/problem)
+Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
+
+## Solution-
+select distinct city from station where lower(substr(city,length(city),1)) in ('a','e','i','o','u');
+
+
+# Weather observation station 8-
+## [Query-](https://www.hackerrank.com/challenges/weather-observation-station-8/problem)
+Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates.
+
+## Solution-
+select city from station where lower(substr(city,1,1)) in ('a','e','i','o','u') and lower(substr(city,length(city),1)) in ('a','e','i','o','u');
